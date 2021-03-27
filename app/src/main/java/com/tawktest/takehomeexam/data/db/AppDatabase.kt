@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.tawktest.takehomeexam.data.db.dao.UserListTableDao
 import com.tawktest.takehomeexam.data.db.dao.UserProfileTableDao
 import com.tawktest.takehomeexam.data.db.entities.UserListTable
@@ -12,7 +13,7 @@ import com.tawktest.takehomeexam.data.db.entities.UserProfileTable
 
 @Database(
     entities = [UserListTable::class, UserProfileTable::class],
-    version = 1
+    version = 2
 )
 abstract class AppDatabase : RoomDatabase(){
     abstract fun getUserListDao() : UserListTableDao
@@ -33,8 +34,9 @@ abstract class AppDatabase : RoomDatabase(){
             Room.databaseBuilder(
                 context.applicationContext,
                 AppDatabase::class.java,
-                "GithubUsers.db"
-            ).build()
+                "GithubUsers.db")
+                .fallbackToDestructiveMigration()
+                .build()
     }
 
 }

@@ -1,8 +1,8 @@
 package com.tawktest.takehomeexam.model
 
 data class UserProfileData(
-    val login : String? = null,
     val id : Int? = 0,
+    val login : String? = null,
     val avatar_url : String? = null,
     val name : String? = null,
     val company : String? = null,

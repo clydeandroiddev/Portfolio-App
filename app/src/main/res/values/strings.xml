@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">TakeHomeExam</string>
+    <string name="label_followers">Followers: 123</string>
+    <string name="label_following">Following: 123</string>
+    <string name="label_company">Company:</string>
+    <string name="label_blog">Blog: </string>
+    <string name="label_name">Name:</string>
+    <string name="label_notes">"Notes: "</string>
+    <string name="btn_save">Save</string>
+    <string name="nav_userlist_title">User List</string>
+    <string name="nav_user_profile_title">User Profile</string>
 </resources>

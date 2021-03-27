@@ -4,42 +4,50 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tawktest.takehomeexam.UserListData
 import com.tawktest.takehomeexam.data.db.AppDatabase
+import com.tawktest.takehomeexam.data.db.entities.UserListTable
+import com.tawktest.takehomeexam.data.db.entities.UserProfileTable
 import com.tawktest.takehomeexam.data.network.ApiCalls
 import com.tawktest.takehomeexam.data.network.SafeApiRequest
+import com.tawktest.takehomeexam.data.preferences.PreferenceProvider
 import com.tawktest.takehomeexam.model.UserProfileData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.time.LocalDateTime
+import java.time.temporal.ChronoUnit
+
+private val MINIMUM_INTERVAL = 1
 
 class UserRepository(
     private val api : ApiCalls,
-    private val db : AppDatabase
+    private val db : AppDatabase,
+    private val prefs : PreferenceProvider
 ) : SafeApiRequest() {
 
-    private val userlist = MutableLiveData<List<UserListData>>()
 
-    init {
-        userlist.observeForever{
-            //Save user list to database
-        }
+    suspend fun getGithubUserProfile(url: String): UserProfileTable {
+        return apiRequest { api.userprofile(url) }
     }
 
-
-    suspend fun userlist(id : Int) : LiveData<List<UserListData>>{
-        return withContext(Dispatchers.IO){
-            fetchUserList(id)
-            db.getUserListDao().getUserList()
-        }
+    suspend fun getGithubUserLists(id: Int): List<UserListTable> {
+        return apiRequest { api.userlist(id) }
     }
 
-    suspend fun userprofile(url : String) : UserProfileData{
-        return  apiRequest { api.userprofile(url) }
+    suspend fun saveUserProfile(profile: UserProfileTable) =
+        db.getUserProfileDao().insertUserProfile(profile)
+
+    suspend fun saveUserList(data: List<UserListTable>) {
+        prefs.savelastSavedAt(LocalDateTime.now().toString())
+        db.getUserListDao().insertUserListMultiple(data)
     }
 
-    suspend fun fetchUserList(id : Int){
-        val response = apiRequest { api.userlist(id) }
-        userlist.postValue(response)
+    fun retrieveUserList() = db.getUserListDao().getUserList()
+
+    fun isFetchNeeded(savedAt: LocalDateTime): Boolean {
+        return ChronoUnit.HOURS.between(savedAt, LocalDateTime.now()) > MINIMUM_INTERVAL
     }
 
-    suspend fun saveUserProfile(profile: UserProfileData) = db.getUserProfileDao().insertUserProfil(profile)
+    fun lastSavedAt() = prefs.getLastSavedAt()
+
+    suspend fun retrieveUserProfile(id : Int) = db.getUserProfileDao().getUserProfile(id)
 
 }

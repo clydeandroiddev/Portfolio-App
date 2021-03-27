@@ -1,6 +1,8 @@
 package com.tawktest.takehomeexam.data.network
 
 import com.tawktest.takehomeexam.UserListData
+import com.tawktest.takehomeexam.data.db.entities.UserListTable
+import com.tawktest.takehomeexam.data.db.entities.UserProfileTable
 import com.tawktest.takehomeexam.model.UserProfileData
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,12 +20,12 @@ interface ApiCalls {
     @GET("users")
     suspend fun userlist(
         @Query("since") id : Int
-    ): Response<List<UserListData>>
+    ): Response<List<UserListTable>>
 
     @GET
     suspend fun userprofile(
        @Url url : String
-    ): Response<UserProfileData>
+    ): Response<UserProfileTable>
 
     companion object {
         operator  fun invoke(

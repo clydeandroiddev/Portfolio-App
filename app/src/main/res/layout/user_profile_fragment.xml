@@ -1,13 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.userprofile.UserProfileFragment">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
+    <data>
+        <variable
+            name="profile"
+            type="com.tawktest.takehomeexam.data.db.entities.UserProfileTable" />
+        <variable
+            name="viewModel"
+            type="com.tawktest.takehomeexam.ui.userprofile.UserProfileViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".ui.userprofile.UserProfileFragment">
 
-</FrameLayout>
+
+        <ImageView
+            android:id="@+id/img_user"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            app:layout_constraintHeight_percent=".2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:imageUri="@{profile.avatar_url}"/>
+
+
+
+        <TextView
+            android:id="@+id/tv_followers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`Followers: ` + profile.followers}"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/text_color"
+            android:textStyle="bold"
+            android:autoSizeMinTextSize="14sp"
+            android:autoSizeMaxTextSize="18sp"
+            android:autoSizeTextType="uniform"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_followings"
+            app:layout_constraintTop_toBottomOf="@id/img_user"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:layout_marginEnd="30dp"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_followings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`Following: ` + profile.following}"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/text_color"
+            android:textStyle="bold"
+            android:autoSizeMinTextSize="14sp"
+            android:autoSizeMaxTextSize="18sp"
+            android:autoSizeTextType="uniform"
+            app:layout_constraintStart_toEndOf="@id/tv_followers"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_user"
+            android:layout_marginStart="30dp"/>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_user_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_followings"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/bg_thin_border">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/text_color"
+                android:textStyle="bold"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="16sp"
+                android:text="@string/label_name"/>
+
+            <TextView
+                android:id="@+id/txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/tv_name"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/text_color"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="16sp"
+                android:text="@{profile.name}"/>
+
+
+            <TextView
+                android:id="@+id/tv_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_name"
+                android:textColor="@color/text_color"
+                android:textStyle="bold"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="16sp"
+                android:layout_marginTop="8dp"
+                android:text="@string/label_company"/>
+
+            <TextView
+                android:id="@+id/txt_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/tv_company"
+                app:layout_constraintTop_toTopOf="@id/tv_company"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/text_color"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="16sp"
+                android:text="@{profile.company}"/>
+
+
+            <TextView
+                android:id="@+id/tv_blog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_company"
+                android:textColor="@color/text_color"
+                android:textStyle="bold"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="16sp"
+                android:layout_marginTop="8dp"
+                android:text="@string/label_blog"/>
+
+            <TextView
+                android:id="@+id/txt_blog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/tv_blog"
+                app:layout_constraintTop_toTopOf="@id/tv_blog"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/text_color"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="16sp"
+                android:text="@{profile.blog}"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/tv_notes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:textStyle="bold"
+            android:text="@string/label_notes"
+            android:autoSizeMinTextSize="14sp"
+            android:autoSizeMaxTextSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_user_details"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="10dp"/>
+
+
+        <EditText
+            android:id="@+id/edit_note"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/tv_notes"
+            app:layout_constraintEnd_toEndOf="@id/tv_notes"
+            app:layout_constraintTop_toBottomOf="@id/tv_notes"
+            android:layout_marginTop="10dp"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            android:gravity="start|top"
+            android:background="@drawable/bg_thin_border"
+            android:autofillHints=""
+            android:text="@={viewModel.notes}"/>
+
+        <Button
+            android:id="@+id/btn_save_notes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_note"
+            android:layout_marginTop="10dp"
+            android:text="@string/btn_save"
+            android:onClick="@{viewModel::OnSaveNotes}"
+            />
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+

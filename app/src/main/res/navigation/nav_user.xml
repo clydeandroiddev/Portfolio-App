@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_user"
+    app:startDestination="@id/navigation_userlist">
+
+    <fragment
+        android:id="@+id/navigation_userlist"
+        android:name="com.tawktest.takehomeexam.ui.userlist.UserList"
+        android:label="@string/nav_userlist_title"
+        tools:layout="@layout/user_list_fragment" >
+        <action
+            android:id="@+id/action_userList_to_userProfileFragment"
+            app:destination="@id/navigation_userprofile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_userprofile"
+        android:name="com.tawktest.takehomeexam.ui.userprofile.UserProfileFragment"
+        android:label="@string/nav_user_profile_title"
+        tools:layout="@layout/user_profile_fragment" />
+</navigation>

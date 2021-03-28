@@ -10,4 +10,6 @@
     <color name="grey">#EFEDED</color>
 
     <color name="text_color">#FF000000</color>
+    <color name="colorGrey">#dddddd</color>
+    <color name="card_bg_color">#FFFFFFFF</color>
 </resources>

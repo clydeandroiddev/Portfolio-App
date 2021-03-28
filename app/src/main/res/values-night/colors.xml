@@ -12,6 +12,7 @@
 
 
     <color name="text_color">#FFFFFF</color>
-
+    <color name="colorGrey">#dddddd</color>
+    <color name="card_bg_color">#FF000000</color>
 
 </resources>

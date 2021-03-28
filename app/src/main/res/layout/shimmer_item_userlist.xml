@@ -11,8 +11,8 @@
         android:layout_height="0dp"
         android:layout_margin="5dp"
         app:cardCornerRadius="5dp"
-        app:cardBackgroundColor="@color/card_bg_color"
         app:layout_constraintHeight_percent=".91"
+        app:cardBackgroundColor="@color/card_bg_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,12 +24,12 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/img_avatar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:scaleType="centerCrop"
                 android:layout_marginVertical="10dp"
                 android:layout_marginStart="10dp"
-                android:background="@color/white"
+                android:background="@color/colorGrey"
                 app:layout_constraintEnd_toStartOf="@id/txt_username"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -37,36 +37,40 @@
                 app:layout_constraintHeight_max="60dp"
                 app:layout_constraintWidth_max="60dp"
                 app:shapeAppearanceOverlay="@style/ImageCircleTheme"
-                app:srcCompat="@drawable/sample_git_image" />
+                />
 
-                <TextView
-                    android:id="@+id/txt_username"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:lines="1"
-                    android:layout_marginHorizontal="5dp"
-                    app:layout_constraintStart_toEndOf="@id/img_avatar"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/txt_details"
-                    app:layout_constraintEnd_toStartOf="@id/img_note"
-                    android:autoSizeMinTextSize="14sp"
-                    android:autoSizeMaxTextSize="18sp"
-                    tools:text="Username"
-                    android:textColor="@color/text_color"
-                    android:textStyle="bold"
-                    app:layout_constraintVertical_chainStyle="packed"/>
+            <TextView
+                android:id="@+id/txt_username"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:layout_marginHorizontal="5dp"
+                app:layout_constraintStart_toEndOf="@id/img_avatar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/txt_details"
+                app:layout_constraintEnd_toStartOf="@id/img_note"
+                android:autoSizeMinTextSize="14sp"
+                android:autoSizeMaxTextSize="18sp"
+                android:text="Username"
+                android:textColor="@color/colorGrey"
+                android:textStyle="bold"
+                android:background="@color/colorGrey"
+                app:layout_constraintVertical_chainStyle="packed"/>
 
-                <TextView
-                    android:id="@+id/txt_details"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@id/txt_username"
-                    app:layout_constraintTop_toBottomOf="@id/txt_username"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:textColor="@color/text_color"
-                    android:autoSizeMinTextSize="12sp"
-                    android:autoSizeMaxTextSize="16sp"
-                  />
+            <TextView
+                android:id="@+id/txt_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/txt_username"
+                app:layout_constraintTop_toBottomOf="@id/txt_username"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/colorGrey"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="16sp"
+                android:background="@color/colorGrey"
+                android:layout_marginTop="5dp"
+                android:text="User id: 1"
+                />
 
             <ImageView
                 android:id="@+id/img_note"
@@ -79,8 +83,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:src="@drawable/ic_baseline_note_24"
                 android:layout_marginEnd="10dp"
-                android:visibility="gone"
-                />
+                android:visibility="visible"
+                app:tint="@color/colorGrey" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

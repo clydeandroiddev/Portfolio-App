@@ -3,6 +3,7 @@ package com.tawktest.takehomeexam.util
 import android.graphics.drawable.shapes.RoundRectShape
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 
 
@@ -13,7 +14,6 @@ fun loadImageWithUri(imageView: ImageView, imageUri: String?){
         Picasso.get()
             .load(imageUri)
             .into(imageView)
-
     }
 
 }

@@ -18,11 +18,15 @@ interface UserListTableDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUserListMultiple(data: List<UserListTable>)
 
-    @Query(value = "SELECT list.id, list.login, list.avatar_url, list.url, profile.notes FROM UserListTable AS list LEFT JOIN  UserProfileTable as profile ON list.id = profile.id")
+    @Query(value = "SELECT list.id, list.login, list.avatar_url, list.url, profile.notes FROM UserListTable AS list LEFT JOIN  UserProfileTable as profile ON list.id = profile.id ORDER BY list.id LIMIT 10")
     fun getUserList() : LiveData<List<UserListData>>
 
+
+    @Query(value = "SELECT list.id, list.login, list.avatar_url, list.url, profile.notes FROM UserListTable AS list LEFT JOIN  UserProfileTable as profile ON list.id = profile.id WHERE list.id >:id LIMIT 10")
+    fun loadMoreUserList(id : Int) : LiveData<List<UserListData>>?
+
     @Query(value = "SELECT * FROM UserListTable")
-    fun getUserListTest() : LiveData<List<UserListTable>>
+    fun getUserListTest() : List<UserListTable>
 
     @Query(value = "SELECT list.id, list.login, list.avatar_url, list.url, profile.notes FROM UserListTable AS list LEFT JOIN  UserProfileTable as profile ON list.id = profile.id")
     fun getUserListJoinTest() : List<UserListTable>

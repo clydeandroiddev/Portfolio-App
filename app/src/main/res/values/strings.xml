@@ -9,4 +9,5 @@
     <string name="btn_save">Save</string>
     <string name="nav_userlist_title">User List</string>
     <string name="nav_user_profile_title">User Profile</string>
+    <string name="label_no_records">No records available</string>
 </resources>

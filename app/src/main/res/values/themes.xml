@@ -19,6 +19,7 @@
     <style name="ImageCircleTheme">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
+        <item name="background">@null</item>
     </style>
 
 

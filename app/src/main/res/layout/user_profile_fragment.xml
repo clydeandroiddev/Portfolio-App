@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -12,203 +13,460 @@
             type="com.tawktest.takehomeexam.ui.userprofile.UserProfileViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:fillViewport="true"
         tools:context=".ui.userprofile.UserProfileFragment">
 
 
-        <ImageView
-            android:id="@+id/img_user"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="10dp"
-            app:layout_constraintHeight_percent=".2"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:imageUri="@{profile.avatar_url}"/>
-
-
-
-        <TextView
-            android:id="@+id/tv_followers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{`Followers: ` + profile.followers}"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/text_color"
-            android:textStyle="bold"
-            android:autoSizeMinTextSize="14sp"
-            android:autoSizeMaxTextSize="18sp"
-            android:autoSizeTextType="uniform"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tv_followings"
-            app:layout_constraintTop_toBottomOf="@id/img_user"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            android:layout_marginEnd="30dp"
-            />
-
-
-        <TextView
-            android:id="@+id/tv_followings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{`Following: ` + profile.following}"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/text_color"
-            android:textStyle="bold"
-            android:autoSizeMinTextSize="14sp"
-            android:autoSizeMaxTextSize="18sp"
-            android:autoSizeTextType="uniform"
-            app:layout_constraintStart_toEndOf="@id/tv_followers"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/img_user"
-            android:layout_marginStart="30dp"/>
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_user_details"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_followings"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/bg_thin_border">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_user_profile"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+
+                    <ImageView
+                        android:id="@+id/shimer_img_user"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginHorizontal="10dp"
+                        app:layout_constraintHeight_percent=".2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:background="@color/colorGrey"/>
+
+
+
+                    <TextView
+                        android:id="@+id/shimer_follwers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Followers: 123"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/colorGrey"
+                        android:textStyle="bold"
+                        android:autoSizeMinTextSize="14sp"
+                        android:autoSizeMaxTextSize="18sp"
+                        android:autoSizeTextType="uniform"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/shimer_followings"
+                        app:layout_constraintTop_toBottomOf="@id/shimer_img_user"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        android:layout_marginEnd="30dp"
+                        android:background="@color/colorGrey"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/shimer_followings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Following: 123"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/colorGrey"
+                        android:textStyle="bold"
+                        android:autoSizeMinTextSize="14sp"
+                        android:autoSizeMaxTextSize="18sp"
+                        android:autoSizeTextType="uniform"
+                        app:layout_constraintStart_toEndOf="@id/shimer_follwers"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/shimer_img_user"
+                        android:layout_marginStart="30dp"
+                        android:background="@color/colorGrey"/>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/shimer_user_details"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/shimer_followings"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp">
+
+                        <TextView
+                            android:id="@+id/shimer_tv_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:textColor="@color/colorGrey"
+                            android:textStyle="bold"
+                            android:autoSizeMinTextSize="12sp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:text="@string/label_name"
+                            android:background="@color/colorGrey"/>
+
+                        <TextView
+                            android:id="@+id/shimer_txt_name"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toEndOf="@id/shimer_tv_name"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:lines="1"
+                            android:ellipsize="end"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:textColor="@color/text_color"
+                            android:autoSizeMinTextSize="12sp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:text="@{profile.name}"
+                            android:background="@color/colorGrey"/>
+
+
+                        <TextView
+                            android:id="@+id/shimer_tv_company"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/shimer_tv_name"
+                            android:textColor="@color/colorGrey"
+                            android:textStyle="bold"
+                            android:autoSizeMinTextSize="12sp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/label_company"
+                            android:background="@color/colorGrey"/>
+
+                        <TextView
+                            android:id="@+id/shimer_txt_company"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:lines="1"
+                            android:ellipsize="end"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="12sp"
+                            android:text="@{profile.company}"
+                            android:textColor="@color/text_color"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/shimer_tv_company"
+                            app:layout_constraintTop_toTopOf="@id/shimer_tv_company"
+                            android:background="@color/colorGrey"/>
+
+
+                        <TextView
+                            android:id="@+id/shimer_tv_blog"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/shimer_tv_company"
+                            android:textColor="@color/colorGrey"
+                            android:textStyle="bold"
+                            android:autoSizeMinTextSize="12sp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/label_blog"
+                            android:background="@color/colorGrey"/>
+
+                        <TextView
+                            android:id="@+id/shimer_txt_blog"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toEndOf="@id/shimer_tv_blog"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/shimer_tv_blog"
+                            android:lines="1"
+                            android:ellipsize="end"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:textColor="@color/text_color"
+                            android:autoSizeMinTextSize="12sp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:text="@{profile.blog}"
+                            android:background="@color/colorGrey"/>
+
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <TextView
+                        android:id="@+id/shimer_tv_notes"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorGrey"
+                        android:textStyle="bold"
+                        android:text="@string/label_notes"
+                        android:autoSizeMinTextSize="14sp"
+                        android:autoSizeMaxTextSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/shimer_user_details"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:background="@color/colorGrey"/>
+
+
+                    <EditText
+                        android:id="@+id/shimer_edit_note"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:autofillHints=""
+                        android:background="@color/colorGrey"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine"
+                        android:lines="3"
+                        android:autoSizeMinTextSize="12sp"
+                        android:autoSizeMaxTextSize="16sp"
+                        android:text="@={viewModel.notes}"
+                        app:layout_constraintEnd_toEndOf="@id/shimer_tv_notes"
+                        app:layout_constraintStart_toStartOf="@id/shimer_tv_notes"
+                        app:layout_constraintTop_toBottomOf="@id/shimer_tv_notes" />
+
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_primary_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:textColor="@color/text_color"
-                android:textStyle="bold"
-                android:autoSizeMinTextSize="12sp"
-                android:autoSizeMaxTextSize="16sp"
-                android:text="@string/label_name"/>
+                android:visibility="gone">
 
-            <TextView
-                android:id="@+id/txt_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@id/tv_name"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="5dp"
-                android:textColor="@color/text_color"
-                android:autoSizeMinTextSize="12sp"
-                android:autoSizeMaxTextSize="16sp"
-                android:text="@{profile.name}"/>
+                <ImageView
+                    android:id="@+id/img_user"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    app:layout_constraintHeight_percent=".2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:imageUri="@{profile.avatar_url}"/>
 
 
-            <TextView
-                android:id="@+id/tv_company"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_name"
-                android:textColor="@color/text_color"
-                android:textStyle="bold"
-                android:autoSizeMinTextSize="12sp"
-                android:autoSizeMaxTextSize="16sp"
-                android:layout_marginTop="8dp"
-                android:text="@string/label_company"/>
 
-            <TextView
-                android:id="@+id/txt_company"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@id/tv_company"
-                app:layout_constraintTop_toTopOf="@id/tv_company"
-                android:layout_marginStart="5dp"
-                android:textColor="@color/text_color"
-                android:autoSizeMinTextSize="12sp"
-                android:autoSizeMaxTextSize="16sp"
-                android:text="@{profile.company}"/>
+                <TextView
+                    android:id="@+id/tv_follwers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{`Followers: ` + profile.followers}"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/text_color"
+                    android:textStyle="bold"
+                    android:autoSizeMinTextSize="14sp"
+                    android:autoSizeMaxTextSize="18sp"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tv_followings"
+                    app:layout_constraintTop_toBottomOf="@id/img_user"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    android:layout_marginEnd="30dp"
+                    />
 
 
-            <TextView
-                android:id="@+id/tv_blog"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_company"
-                android:textColor="@color/text_color"
-                android:textStyle="bold"
-                android:autoSizeMinTextSize="12sp"
-                android:autoSizeMaxTextSize="16sp"
-                android:layout_marginTop="8dp"
-                android:text="@string/label_blog"/>
+                <TextView
+                    android:id="@+id/tv_followings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{`Following: ` + profile.following}"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/text_color"
+                    android:textStyle="bold"
+                    android:autoSizeMinTextSize="14sp"
+                    android:autoSizeMaxTextSize="18sp"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintStart_toEndOf="@id/tv_follwers"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/img_user"
+                    android:layout_marginStart="30dp" />
 
-            <TextView
-                android:id="@+id/txt_blog"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@id/tv_blog"
-                app:layout_constraintTop_toTopOf="@id/tv_blog"
-                android:layout_marginStart="5dp"
-                android:textColor="@color/text_color"
-                android:autoSizeMinTextSize="12sp"
-                android:autoSizeMaxTextSize="16sp"
-                android:text="@{profile.blog}"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_user_details"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_followings"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/bg_thin_border">
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textColor="@color/text_color"
+                        android:textStyle="bold"
+                        android:autoSizeMinTextSize="12sp"
+                        android:autoSizeMaxTextSize="16sp"
+                        android:text="@string/label_name" />
+
+                    <TextView
+                        android:id="@+id/txt_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toEndOf="@id/tv_name"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:lines="1"
+                        android:ellipsize="end"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:textColor="@color/text_color"
+                        android:autoSizeMinTextSize="12sp"
+                        android:autoSizeMaxTextSize="16sp"
+                        android:text="@{profile.name}" />
+
+
+                    <TextView
+                        android:id="@+id/tv_company"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_name"
+                        android:textColor="@color/text_color"
+                        android:textStyle="bold"
+                        android:autoSizeMinTextSize="12sp"
+                        android:autoSizeMaxTextSize="16sp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/label_company" />
+
+                    <TextView
+                        android:id="@+id/txt_company"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:lines="1"
+                        android:ellipsize="end"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:autoSizeMaxTextSize="16sp"
+                        android:autoSizeMinTextSize="12sp"
+                        android:text="@{profile.company}"
+                        android:textColor="@color/text_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv_company"
+                        app:layout_constraintTop_toTopOf="@id/tv_company" />
+
+
+                    <TextView
+                        android:id="@+id/tv_blog"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_company"
+                        android:textColor="@color/text_color"
+                        android:textStyle="bold"
+                        android:autoSizeMinTextSize="12sp"
+                        android:autoSizeMaxTextSize="16sp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/label_blog" />
+
+                    <TextView
+                        android:id="@+id/txt_blog"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toEndOf="@id/tv_blog"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_blog"
+                        android:lines="1"
+                        android:ellipsize="end"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:textColor="@color/text_color"
+                        android:autoSizeMinTextSize="12sp"
+                        android:autoSizeMaxTextSize="16sp"
+                        android:text="@{profile.blog}" />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_notes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color"
+                    android:textStyle="bold"
+                    android:text="@string/label_notes"
+                    android:autoSizeMinTextSize="14sp"
+                    android:autoSizeMaxTextSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_user_details"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="10dp" />
+
+
+                <EditText
+                    android:id="@+id/edit_note"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:autofillHints=""
+                    android:background="@drawable/bg_thin_border"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeMaxTextSize="16sp"
+                    android:text="@={viewModel.notes}"
+                    app:layout_constraintEnd_toEndOf="@id/tv_notes"
+                    app:layout_constraintStart_toStartOf="@id/tv_notes"
+                    app:layout_constraintTop_toBottomOf="@id/tv_notes" />
+
+                <Button
+                    android:id="@+id/btn_save_notes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edit_note"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/btn_save"
+                    android:onClick="@{viewModel::OnSaveNotes}"
+                    />
+
+
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <TextView
-            android:id="@+id/tv_notes"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
-            android:textStyle="bold"
-            android:text="@string/label_notes"
-            android:autoSizeMinTextSize="14sp"
-            android:autoSizeMaxTextSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cl_user_details"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="10dp"/>
+    </ScrollView>
 
-
-        <EditText
-            android:id="@+id/edit_note"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/tv_notes"
-            app:layout_constraintEnd_toEndOf="@id/tv_notes"
-            app:layout_constraintTop_toBottomOf="@id/tv_notes"
-            android:layout_marginTop="10dp"
-            android:inputType="textMultiLine"
-            android:lines="3"
-            android:gravity="start|top"
-            android:background="@drawable/bg_thin_border"
-            android:autofillHints=""
-            android:text="@={viewModel.notes}"/>
-
-        <Button
-            android:id="@+id/btn_save_notes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_note"
-            android:layout_marginTop="10dp"
-            android:text="@string/btn_save"
-            android:onClick="@{viewModel::OnSaveNotes}"
-            />
-
-
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
 

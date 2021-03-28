@@ -13,31 +13,12 @@ class UserListViewModel(val repository: UserRepository) : ViewModel() {
 
     var globalListener : GlobalListener? = null
 
-    suspend fun retrievedUserLists() = repository.retrieveUserList()
+   fun retrievedUserLists() = repository.retrieveUserList()
 
 
-    fun fetchUserList(){
-        val lastSavedAt = repository.lastSavedAt()
-        if(lastSavedAt == null || repository.isFetchNeeded(LocalDateTime.parse(lastSavedAt))){
-            globalListener?.onStarted()
 
-            Coroutines.main {
-                try {
-                    val response = repository.getGithubUserLists(0)
-                    response.let {
-                        globalListener?.onSuccess("")
-                        repository.saveUserList(it)
-                        return@main
-                    }
-                }catch (e : ApiException){
-                    globalListener?.onFailure("Error",e.message!!)
-                }catch (e : NoInternetException){
-                    globalListener?.onFailure("Error",e.message!!)
-                }catch (e : IOException){
-                    globalListener?.onFailure("Error",e.message!!)
-                }
-            }
-        }
-    }
+
+    suspend fun loadMoreUserList(lastID: Int) = repository.loadmMoreUserlist(lastID)
+
 
 }

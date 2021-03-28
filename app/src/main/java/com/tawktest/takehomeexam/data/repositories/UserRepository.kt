@@ -15,7 +15,7 @@ import kotlinx.coroutines.withContext
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
 
-private val MINIMUM_INTERVAL = 1
+private val MINIMUM_INTERVAL = 5
 
 class UserRepository(
     private val api : ApiCalls,
@@ -43,11 +43,16 @@ class UserRepository(
     fun retrieveUserList() = db.getUserListDao().getUserList()
 
     fun isFetchNeeded(savedAt: LocalDateTime): Boolean {
-        return ChronoUnit.HOURS.between(savedAt, LocalDateTime.now()) > MINIMUM_INTERVAL
+        return ChronoUnit.MINUTES.between(savedAt, LocalDateTime.now()) > MINIMUM_INTERVAL
     }
 
     fun lastSavedAt() = prefs.getLastSavedAt()
 
     suspend fun retrieveUserProfile(id : Int) = db.getUserProfileDao().getUserProfile(id)
+
+    fun loadmMoreUserlist(last_user_id : Int) = db.getUserListDao().loadMoreUserList(last_user_id)
+
+    suspend fun saveNotes(user_id : Int, notes : String) = db.getUserProfileDao().saveNotes(user_id, notes)
+
 
 }
